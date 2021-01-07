@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wms.mapper.requirements.InRequirementMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wms.model.entity.InRequirementEntity">
+        <id column="ID" property="id" />
+    <result column="CREATED_BY" property="createdBy" />
+    <result column="CREATED_DATE" property="createdDate" />
+    <result column="LAST_UPDATED_BY" property="lastUpdatedBy" />
+    <result column="LAST_UPDATED_DATE" property="lastUpdatedDate" />
+    <result column="DELETED_BY" property="deletedBy" />
+    <result column="DELETED_DATE" property="deletedDate" />
+    <result column="IS_DELETED" property="isDeleted" />
+        <result column="REQUIREMENT_CODE" property="requirementCode" />
+        <result column="WAREHOUSE_CODE" property="warehouseCode" />
+        <result column="ORIGINAL_ORDER_ID" property="originalOrderId" />
+        <result column="ORIGINAL_FROM" property="originalFrom" />
+        <result column="ORIGINAL_CODE" property="originalCode" />
+        <result column="ORIGINAL_TYPE" property="originalType" />
+        <result column="REQUIREMENT_TYPE" property="requirementType" />
+        <result column="CONTRACT_CODE" property="contractCode" />
+        <result column="SUPPLIER_ID" property="supplierId" />
+        <result column="SUPPLIER_TYPE" property="supplierType" />
+        <result column="SUPPLIER_NAME" property="supplierName" />
+        <result column="SUPPLIER_ADDRESS" property="supplierAddress" />
+        <result column="DELIVER_TYPE" property="deliverType" />
+        <result column="DELIVER_DATE" property="deliverDate" />
+        <result column="APPLY_SYS_USER" property="applySysUser" />
+        <result column="APPLY_HR_DEPT" property="applyHrDept" />
+        <result column="APPLY_DATE" property="applyDate" />
+        <result column="NOTE" property="note" />
+        <result column="STATUS" property="status" />
+        <result column="VERSION" property="version" />
+    </resultMap>
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BoResultMap" type="com.wms.model.bo.requirements.InRequirementBo">
+        <id column="ID" property="id" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="CREATED_DATE" property="createdDate" />
+        <result column="LAST_UPDATED_BY" property="lastUpdatedBy" />
+        <result column="LAST_UPDATED_DATE" property="lastUpdatedDate" />
+        <result column="DELETED_BY" property="deletedBy" />
+        <result column="DELETED_DATE" property="deletedDate" />
+        <result column="IS_DELETED" property="isDeleted" />
+                <result column="REQUIREMENT_CODE" property="requirementCode" />
+                <result column="WAREHOUSE_CODE" property="warehouseCode" />
+                <result column="ORIGINAL_ORDER_ID" property="originalOrderId" />
+                <result column="ORIGINAL_FROM" property="originalFrom" />
+                <result column="ORIGINAL_CODE" property="originalCode" />
+                <result column="ORIGINAL_TYPE" property="originalType" />
+                <result column="REQUIREMENT_TYPE" property="requirementType" />
+                <result column="CONTRACT_CODE" property="contractCode" />
+                <result column="SUPPLIER_ID" property="supplierId" />
+                <result column="SUPPLIER_TYPE" property="supplierType" />
+                <result column="SUPPLIER_NAME" property="supplierName" />
+                <result column="SUPPLIER_ADDRESS" property="supplierAddress" />
+                <result column="DELIVER_TYPE" property="deliverType" />
+                <result column="DELIVER_DATE" property="deliverDate" />
+                <result column="APPLY_SYS_USER" property="applySysUser" />
+                <result column="APPLY_HR_DEPT" property="applyHrDept" />
+                <result column="APPLY_DATE" property="applyDate" />
+                <result column="NOTE" property="note" />
+                <result column="STATUS" property="status" />
+                <result column="VERSION" property="version" />
+        </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CREATED_BY,
+        CREATED_DATE,
+        LAST_UPDATED_BY,
+        LAST_UPDATED_DATE,
+        DELETED_BY,
+        DELETED_DATE,
+        IS_DELETED,
+        ID, REQUIREMENT_CODE,WAREHOUSE_CODE, ORIGINAL_ORDER_ID, ORIGINAL_FROM, ORIGINAL_CODE, ORIGINAL_TYPE, REQUIREMENT_TYPE, CONTRACT_CODE, SUPPLIER_ID, SUPPLIER_TYPE, SUPPLIER_NAME, SUPPLIER_ADDRESS, DELIVER_TYPE, DELIVER_DATE, APPLY_SYS_USER, APPLY_HR_DEPT, APPLY_DATE, NOTE, STATUS, VERSION
+    </sql>
+
+    <select id="getInRequirementById" resultMap="BoResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from WMS_IN_REQUIREMENT where id = #{id}
+    </select>
+
+    <select id="getInRequirementPageList" resultMap="BoResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from WMS_IN_REQUIREMENT
+    </select>
+    <select id="queryRequirementIDByOriginalID" resultType="java.lang.String">
+        select ID from WMS_IN_REQUIREMENT where ORIGINAL_ORDER_ID= #{originalID} and IS_DELETED=0
+    </select>
+
+</mapper>
